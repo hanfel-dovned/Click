@@ -1,0 +1,9 @@
+:~  title+'Click'
+    info+'Who can click the most?'
+    color+0xff.ffff
+    base+'click'
+    site+/apps/click
+    version+[1 0 0]
+    website+'https://urbit.org'
+    license+'MIT'
+==

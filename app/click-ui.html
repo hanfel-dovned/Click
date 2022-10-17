@@ -1,0 +1,51 @@
+<head>
+  <style>
+    div { text-align: center; }
+    button { text-align: center; }
+  </style>
+
+</head>
+
+<body>
+  <main>
+    <p> </p>
+    <div><button onclick="postClick()">Click</button></div>
+    <p> </p>
+    <div id="scores"></div>
+    <script>
+    
+
+function postClick() {
+    fetch('/apps/click', {
+        method: 'POST',
+        body: 0
+    })
+    location.reload()
+}
+
+getState()
+    .then((state) => renderPage(state))
+
+async function getState() {
+    const response = await fetch('/apps/click/state')
+    return response.json()
+}
+
+const scores = document.getElementById("scores");
+
+function renderPage(state)
+{
+  state.sort(function(a, b) {
+      return b[1] - a[1];
+  })
+  for(var i = 0; i < state.length; i++)
+  {
+      const newScore = document.createElement("div");
+      newScore.textContent = "~" + state[i][0] + " " + state[i][1];
+      scores.appendChild(newScore);
+      console.log(newScore);
+  }
+}
+
+</script>
+</main>
